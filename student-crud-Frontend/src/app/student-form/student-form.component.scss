@@ -1,0 +1,141 @@
+// .container {
+//     max-width: 600px;
+//     margin: 0 auto;
+//     padding: 20px;
+//     background-color: #f9f9f9;
+//     border-radius: 10px;
+//     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+//   }
+  
+//   h2 {
+//     text-align: center;
+//     margin-bottom: 20px;
+//     font-size: 24px;
+//   }
+  
+//   .form-group {
+//     margin-bottom: 15px;
+//   }
+  
+//   .form-group label {
+//     display: block;
+//     font-weight: bold;
+//     margin-bottom: 5px;
+//   }
+  
+//   .form-control {
+//     width: 100%;
+//     padding: 10px;
+//     font-size: 16px;
+//     border: 1px solid #ccc;
+//     border-radius: 5px;
+//   }
+  
+//   .form-control.ng-invalid.ng-touched,
+//   .form-control.ng-invalid.ng-dirty {
+//     border-color: #dc3545;
+//   }
+  
+//   .text-danger {
+//     color: #dc3545;
+//     font-size: 14px;
+//   }
+  
+//   p-button {
+//     margin-top: 20px;
+//   }
+  
+//   div[style="text-align: center;"] {
+//     margin-top: 20px;
+//   }
+  
+//   p-button .p-button {
+//     width: 100%;
+//   }
+  
+/* Container for the student form */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+  
+/* Form title */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  /* Form inputs */
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+  
+/* Container for the student list */
+.container1 {
+  max-width: 80%;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+/* Student list table */
+p-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Header styles */
+p-table th {
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+}
+
+/* Row styles */
+p-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Center alignment for buttons in table */
+p-table td p-button {
+  margin: 0 5px;
+}
+  
+/* Total counts section */
+.container1 p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+  
+.button-cell {
+  padding-right: 10px; /* Adjust the value as needed */
+}
+
+  

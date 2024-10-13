@@ -1,0 +1,178 @@
+<!--<div>
+    <h2>Add Student</h2>
+    <form (ngSubmit)="addStudent()">
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="newStudent.name" name="name" required>
+      <br><br>
+      <label>Branch:</label>
+      <input type="text" [(ngModel)]="newStudent.branch" name="branch" required>
+      <br><br>
+      <label>Roll No:</label>
+      <input type="text" [(ngModel)]="newStudent.rollNo" name="rollNo" required>
+      <br><br>
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="newStudent.email" name="email" required>
+      <br><br>
+      <button type="submit">Add Student</button>
+    </form>
+  </div> -->
+
+  <div class="container">
+    <h2>Student Form</h2>
+    <form (ngSubmit)="isEditing ? updateStudent() : addStudent()" #studentForm="ngForm">
+      <div class="form-group">
+        <label for="name">Student Name:</label>
+        <input type="text" pInputText class="form-control" id="name" [(ngModel)]="newStudent.name" name="name" required>
+        <div *ngIf="studentForm.submitted || studentForm.controls['name'].dirty">
+          <div *ngIf="studentForm.controls['name'].errors?.['required']" class="text-danger">
+            Name is required.
+          </div>
+        </div>
+      </div>
+    
+
+      <div class="form-group">
+        <label for="branch">Branch:</label>
+        <select name="branch" id="branch" class="form-control" [(ngModel)]="newStudent.branch" required>
+          <option [value]="b.value" *ngFor="let b of branchOptions">{{b.label}}</option>
+        </select>
+        <div *ngIf="studentForm.submitted || studentForm.controls['branch'].dirty">
+          <div *ngIf="studentForm.controls['branch'].errors?.['required']" class="text-danger">
+            Branch is required.
+          </div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="rollNo">Roll Number:</label>
+        <input type="text" class="form-control" id="rollNo" [(ngModel)]="newStudent.rollNo" name="rollNo" required>
+        <div *ngIf="studentForm.submitted || studentForm.controls['rollNo'].dirty">
+          <div *ngIf="studentForm.controls['rollNo'].errors?.['required']" class="text-danger">
+            Roll Number is required.
+          </div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="newStudent.email" name="email" required email>
+        <div *ngIf="studentForm.submitted || studentForm.controls['email'].dirty">
+          <div *ngIf="studentForm.controls['email'].errors?.['required']" class="text-danger">
+            Email is required.
+          </div>
+          <div *ngIf="studentForm.controls['email'].errors?.['email']" class="text-danger">
+            Invalid email format.
+          </div>
+        </div>
+      </div>
+      <tr>
+        <td class="button-cell">
+            <p-button type="submit" [label]="isEditing ? 'Update Student' : 'Add Student' "[disabled]="!studentForm.form.valid" ></p-button>
+        </td> 
+        <td class="button-cell">
+            <p-button (click)="clearForm()" type="button" label="Cancel"></p-button>
+        </td>
+    </tr>
+    
+    </form>
+    </div>
+
+
+  
+  
+  <div class="container1">
+    <h2>Student List</h2>
+    <p-table [value]="studentService.getStudents()" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+            <th>
+            <div class="flex justify-content-between align-items-center"> 
+                <p-columnFilter
+                          type="text"
+                          field="name"
+                          placeholder="Search by name"
+                          class="ml-auto"> 
+                        </p-columnFilter> 
+            </div>
+            </th>
+
+            <th>
+            <div class="flex justify-content-between align-items-center"> 
+                <p-columnFilter
+                          type="text"
+                          field="branch"
+                          placeholder="Search by branch"
+                          class="ml-auto"> 
+                        </p-columnFilter>
+            </div>
+            </th>
+ 
+            <th>
+            <div class="flex justify-content-between align-items-center"> 
+                <p-columnFilter
+                          type="text"
+                          field="rollNo"
+                          placeholder="Search by rollNo"
+                          class="ml-auto"> 
+                        </p-columnFilter>
+            </div>
+            </th>
+
+            <th>
+            <div class="flex justify-content-between align-items-center">
+                <p-columnFilter
+                          type="text"
+                          field="email"
+                          placeholder="Search by email"
+                          class="ml-auto"> 
+                        </p-columnFilter>
+            </div>
+        </th>
+        </tr>
+        <tr>
+          <th pSortableColumn="name" style="width:20%">
+            <div class="flex justify-content-between align-items-center"> 
+            Name <p-sortIcon field="name" />
+            </div>
+          </th>
+          <th pSortableColumn="branch" style="width:20%">
+            <div class="flex justify-content-between align-items-center">
+            Branch <p-sortIcon field="branch" />
+                        </div>
+          </th>
+          <th pSortableColumn="rollNo"style="width:20%">
+            <div class="flex justify-content-between align-items-center">
+            Roll Number<p-sortIcon field="rollNo" />
+            </div>
+          </th>
+          <th pSortableColumn="email" style="width:20%">
+            <div class="flex justify-content-between align-items-center">
+            email <p-sortIcon field="email"/>
+
+                        </div>
+          </th>
+          <th>Action</th>
+        </tr> 
+      </ng-template>
+      <ng-template pTemplate="body" let-student let-i="rowIndex">
+        <tr>
+          <td>{{ student.name }}</td>
+          <td >{{ student.branchInfo?.branchName }}</td>
+          <td>{{ student.rollNo }}</td>
+          <td>{{ student.email }}</td>
+          <td>
+            <p-button (click)="removeStudent(student.id, i)" type="Remove" label="Remove"  />
+          </td>
+          <td>
+            <!-- <p-button (click)="viewStudent(student)" type="View" label="View"  /> -->
+            <p-button (click)="viewStudent(student)" type="button" label="Edit" />
+          </td>
+          <!-- <td>
+            <p-button (click)="editStudent(student)" type="button" label="Edit"></p-button>
+          </td> -->
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
